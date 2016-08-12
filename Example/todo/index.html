@@ -46,17 +46,13 @@
 
                 var Sel = f.find(":checked");
 
-                if (Sel.count != 0) {
+                Sel.each(function(i) {
 
-                    Sel.each(function(i) {
+                    tedApi.delete(
+                        tedApi.parent(this[i])
+                    );
 
-                        tedApi.delete(
-                            tedApi.parent(this[i])
-                        );
-
-                    });
-
-                }
+                });
 
             });
 
