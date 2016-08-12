@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Todo List</title>
+    <script src="https://cdn.tedjs.org/tedjs/0.0.1/js/2ed.min.js"></script>
+    <script>
+        var aml = include("system.aml.std").aml;
+    </script>
+</head>
+
+<body>
+
+    <div aml="todo">
+        <input type="text" aml="todo-text" />
+        <div aml="todo-box">
+
+        </div>
+        <input type="button" value="Insert" aml="todo-in" />
+        <input type="button" value="Delete" aml="todo-del" />
+    </div>
+
+    <script>
+        var mod = aml.module("todo");
+
+        mod.control(function(f) {
+
+            var $ = f.sub;
+
+            tedApi.bind($["todo-in"].self, "click", function() {
+
+                if ($["todo-text"].self.value.trim() !== "") {
+
+                    var pat = "<p><input type='checkbox'/> ((text)) </p>".replace("((text))", $["todo-text"].self.value.trim());
+
+                    tedApi.append(
+                        $["todo-box"].self,
+                        tedApi.elm(pat)
+                    )
+
+                }
+
+            });
+
+            tedApi.bind($["todo-del"].self, "click", function() {
+
+                var Sel = f.find(":checked");
+
+                if (Sel.count != 0) {
+
+                    Sel.each(function(i) {
+
+                        tedApi.delete(
+                            tedApi.parent(this[i])
+                        );
+
+                    });
+
+                }
+
+            });
+
+
+        });
+    </script>
+
+</body>
+
+</html>
