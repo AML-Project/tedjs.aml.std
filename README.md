@@ -447,7 +447,7 @@ True
 ##### .:: Example 2:
 ```html
 <body var="x=2">
-    <if is="{{aml:x}} != 2">True</if>
+    <if not="{{aml:x}} != 2">True</if>
 </body>
 ```
 is equal to this `javascript` code.
