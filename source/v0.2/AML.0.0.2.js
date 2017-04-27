@@ -19,8 +19,6 @@ var aml = {};
         for(var i = 0 ; i < children.length ; i++){
             if( tedApi.isTextNode(children[i]) &&  !tedApi.isUndefined(children[i].oldIn) ){
                 children[i].nodeValue = children[i].oldIn;
-                console.dir(children[i]);
-                console.log(children[i])
                 ted.compile(children[i],true);
             }
         }
